@@ -12,6 +12,8 @@ Vanguard evaluated a redesigned User Interface (UI) featuring in-context prompts
 
 **Repo:** [mocihu-source/Week-5-6-Project--EDA-and-Inferential-Stats](https://github.com/mocihu-source/Week-5-6-Project--EDA-and-Inferential-Stats/tree/main)
 
+**Trello:** https://trello.com/invite/b/6a550d61be8094511b4f3f2b/ATTI43656ec3a079897dfaefec9b7e69cfe102332B59/ab-testing
+
 ## 👥 Team Members
 
 Presented by the Data Analytics Team:
