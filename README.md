@@ -1,178 +1,60 @@
-# 📊 Vanguard A/B Test — Digital Experience Redesign  
-### Customer Experience (CX) — Data Analysis Project
+# Vanguard Digital Redesign: A/B Test Analysis
 
-## 🧩 Overview  
-This project analyzes Vanguard’s digital redesign experiment, where a new modern UI with in‑context prompts was tested against the traditional interface.  
-The main question: **Did the new UI increase completion rates and improve user experience?**
+## 📌 Project Overview
 
-The A/B test ran from **15 March 2017 to 20 June 2017**, comparing:
+Vanguard evaluated a redesigned User Interface (UI) featuring in-context prompts against its traditional interface. The primary goal was to determine whether the updated design meaningfully improves process completion rates among clients.
 
-- **Control Group:** traditional interface  
-- **Test Group:** redesigned interface with modern UI + contextual prompts  
+- **Experiment Period:** March 15 – June 20, 2017
+- **Target Audience:** Established Vanguard client base (Median age: 47.3 years | Median tenure: 11 years)
+- **Core Question:** Would the redesigned UI encourage more clients to complete the process without introducing excessive friction?
 
-Both groups followed the same online process: initial page → 3 steps → confirmation.
+**Presentation:** [View on Canva](https://canva.link/44rhlfr9flm13dl)
 
----
+**Repo:** [mocihu-source/Week-5-6-Project--EDA-and-Inferential-Stats](https://github.com/mocihu-source/Week-5-6-Project--EDA-and-Inferential-Stats/tree/main)
 
-## 🔗 Project Links  
-- **GitHub Repository:** https://github.com/mocihu-source/Week-5-6-EDA-and-Inferential-Stats  
-- **Trello Kanban Board:** https://trello.com/b/6a550d61be8094511b4f3f2b  
-- **Jupyter Notebook (Online):** https://jupyter.org/try-jupyter/lab/index.html  
-- **Tableau Public:** *(link to be added when published)*  
+## 👥 Team Members
 
----
+Presented by the Data Analytics Team:
 
-## 📁 Project Structure  
+- Katarzyna
+- Moci
+- Keagan
+- Teresa
 
----
+## 📊 Dataset & Cleaning Steps
 
-## 📚 Datasets  
+- **Data Sources:** Merged three core datasets — client demographics, web interaction logs, and the experiment roster. Each client was mapped via a unique client ID.
+- **Data Volume:** Cleaned ~755,000 raw web events down to 68,941 visits across 50,487 unique clients. Out-of-scope and incomplete records were removed.
+- **Data Quality Fixes:** Corrected duplicate logging events and visit ID collisions.
+- **Randomization Validation:** Baseline engagement (e.g., average 6-month logins ~6.1 and support calls ~3.1) was balanced across both groups, confirming valid randomization.
 
-### **1. Client Profiles — `df_final_demo`**  
-Demographics & account info:  
-- `client_id`, `clnt_age`, `gendr`, `num_accts`, `bal`  
-- `clnt_tenure_yr`, `clnt_tenure_mnth`  
-- `calls_6_mnth`, `logons_6_mnth`
+## 📈 Key Metrics & Results (KPIs)
 
-### **2. Digital Footprints — `df_final_web_data_pt_1` + `pt_2`**  
-Merged to form full user navigation logs:  
-- `visitor_id`, `visit_id`, `process_step`, `date_time`
+| Metric | Control UI | Test UI | Delta / Impact | Significance |
+|---|---|---|---|---|
+| Completion Rate | 49.6% | 58.4% | +8.7 pp (~17% relative lift) | p < 0.0001 (z = 22.89) |
+| Median Completion Time | 4.57 min | 4.18 min | −0.39 min (~8.5% faster overall) | p < 0.0001 (Mann-Whitney U) |
+| Avg. Support Calls (6 mos) | 3.13 | 3.06 | −0.07 calls | p < 0.001 (small practical impact) |
 
-### **3. Experiment Roster — `df_final_experiment_clients`**  
-Shows group assignment:  
-- `client_id`, `variation` (Test vs Control)
+### Key Behavioral Insights
 
----
+- **Funnel Performance:** Test group drop-off was significantly reduced at two of the four funnel transitions (p < 0.001), with the strongest improvements at the start and final stages.
+- **Error Rate & In-Context Prompts:** Test UI users showed higher error/backward-navigation rates early in the funnel (Start, Step 1, Step 2, and Confirm). However, overall completion rates improved, indicating the UI trades some speed for added guidance.
+- **Critical Friction Point:** Drop-offs peaked at the Step 2 → Step 3 transition, suggesting early step confusion that occasionally culminates in abandonment later.
 
-## 🔍 Tasks & Methodology  
+## 💡 Conclusions & Recommendations
 
-### **Week 5 — Day 1 & 2: EDA & Cleaning**
-- Merge web data  
-- Handle missing values & duplicates  
-- Explore demographics  
-- Analyze navigation patterns  
+- **Proceed with Full Rollout:** The test UI achieved an +8.7 percentage point increase in completion rate, comfortably exceeding Vanguard's 5 percentage point threshold.
+- **Optimize Step 2 → Step 3 Transition:** Address user confusion in the early steps (Steps 1–2) to prevent mid-funnel drop-offs.
+- **Post-Rollout Qualitative Survey:** Deploy targeted user satisfaction surveys to monitor user sentiment regarding error frequency.
 
-### **Week 5 — Day 3: Performance Metrics**
-KPIs implemented:
-- **Completion Rate**  
-- **Time Spent per Step**  
-- **Error Rate (backward navigation)**  
+## ⚠️ Limitations & Data Needed
 
-### **Week 5 — Day 4 & 5: Hypothesis Testing**
-Tests performed:
-- **Two‑proportion z‑test** (completion rate difference)  
-- **One‑sided z‑test** (cost‑effectiveness threshold: +5%)  
-- Additional optional tests  
+- **Seasonality:** The experiment period (Mar–Jun 2017) overlapped with the US tax season, which may skew client behavior.
+- **Missing Data Points:** Granular call timing data, device/platform breakdowns, and direct qualitative user feedback were unavailable.
 
-### **Week 6 — Day 1 & 2: Tableau**
-Interactive dashboard with:
-- Completion rates  
-- Step durations  
-- Error rates  
-- Demographic filters  
+## 🛠 Tech Stack
 
-### **Week 6 — Day 3 & 4: Finalization**
-- Code organization  
-- README polishing  
-- Slide preparation  
-- Optional bonus tasks (power analysis, Streamlit prototype)
-
----
-
-## 📈 Key Metrics  
-
-### **Completion Rate**
-
-
-\[
-\text{Completion Rate} = \frac{\text{Users reaching 'confirm'}}{\text{Total users in group}}
-\]
-
-
-
-### **Time Spent per Step**
-Average duration between consecutive steps.
-
-### **Error Rate**
-
-
-\[
-\text{Error Rate} = \frac{\text{Backward steps}}{\text{Total steps}}
-\]
-
-
-
----
-
-## 🧪 Hypothesis Tests  
-
-### **Completion Rate Difference**
-- **H₀:** Test = Control  
-- **Hₐ:** Test ≠ Control  
-→ Two‑proportion z‑test
-
-### **Cost‑Effectiveness Threshold (+5%)**
-- **H₀:** Test ≤ Control + 5%  
-- **Hₐ:** Test > Control + 5%  
-→ One‑sided z‑test
-
----
-
-## 🧪 Experiment Evaluation  
-Topics covered:
-- Randomization quality  
-- Duration adequacy (3 months)  
-- Potential biases  
-- Missing data considerations  
-- Additional data needs (e.g., device type, error logs, page load times)
-
----
-
-## 📊 Tableau Dashboard  
-Includes:
-- Completion rate comparison  
-- Step duration heatmaps  
-- Error rate charts  
-- Filters for age, gender, tenure, account balance  
-
----
-
-## 🛠️ Tech Stack  
-- Python (Pandas, NumPy, SciPy, Matplotlib, Seaborn)  
-- Jupyter Notebook  
-- Tableau  
-- Streamlit (optional)  
-- GitHub + Trello (Kanban board)
-
----
-
-## 🎯 Deliverables  
-✔ GitHub repository  
-✔ Jupyter notebook  
-✔ `.py` modules  
-✔ Tableau dashboard  
-✔ Slides link  
-✔ README (this file)  
-✔ Trello board link  
-✔ Clean, organized codebase  
-
----
-
-## 🗣️ Presentation Structure  
-- Title & introduction  
-- Data overview  
-- EDA  
-- KPIs  
-- Hypothesis testing  
-- Experiment evaluation  
-- Tableau demo  
-- Teamwork  
-- Challenges & learnings  
-- Conclusion & recommendations  
-
----
-
-## 📌 Author  
-**Teresa Mendes Coelho**  
-Data Analyst — Vanguard CX Case Study
-
+- **Language:** Python (Pandas, NumPy, SciPy, Statsmodels)
+- **Visualization:** Tableau (Demographic & Engagement Dashboards), Seaborn, Matplotlib
+- **Version Control:** Git & GitHub
